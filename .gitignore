@@ -1,0 +1,35 @@
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ─── Variables de entorno ──────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ─── Base de datos ─────────────────────────────────────────
+*.sql
+*.sqlite
+*.db
+
+# ─── VS Code ───────────────────────────────────────────────
+.vscode/
+*.code-workspace
+
+# ─── Sistema operativo ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Logs ──────────────────────────────────────────────────
+*.log
+logs/
