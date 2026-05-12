@@ -3,7 +3,6 @@ import sys
 import os
 import pandas as pd
 import numpy as np
-from scipy import stats as scipy_stats
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -42,8 +41,7 @@ def percentile_rank(series: pd.Series, ascending: bool = True) -> pd.Series:
     clean = series.fillna(0)
     if not ascending:
         clean = clean.max() - clean
-    ranks = clean.apply(lambda x: scipy_stats.percentileofscore(clean, x, kind="rank"))
-    return ranks.round(1)
+    return (clean.rank(pct=True, method='average') * 100).round(1)
 
 
 def calculate_attacker_scores(df: pd.DataFrame) -> pd.DataFrame:
