@@ -12,10 +12,12 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS debe registrarse ANTES que cualquier otro middleware o handler
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://football-scout-frontend-sigma.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
