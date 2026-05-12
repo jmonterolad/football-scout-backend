@@ -3,7 +3,7 @@
 A data-driven football player scouting API built with FastAPI and Python. Analyzes real player statistics from top European leagues and generates proprietary scouting scores to identify transfer targets.
 
 ## 🔴 Live API
-> [https://football-scout-api.onrender.com](https://football-scout-api.onrender.com)
+> [https://football-scout-backend-u4sr.onrender.com](https://football-scout-backend-u4sr.onrender.com)
 >
 > ⚠️ Hosted on Render free tier — first request may take ~30 seconds to wake up.
 
