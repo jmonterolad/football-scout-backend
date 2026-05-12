@@ -8,7 +8,7 @@ Esta es la feature estrella del proyecto.
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session, joinedload
 from app.database import get_db
-from app.models import Player, ScoutingScore, Team
+from app.models import Player, ScoutingScore, Team, League
 from app.schemas import PlayerListItem
 
 router = APIRouter(prefix="/api/scouting", tags=["Scouting"])
@@ -139,13 +139,16 @@ def get_recommendations(
 
 @router.get("/summary")
 def get_summary(db: Session = Depends(get_db)):
-    """Stats generales para mostrar en el dashboard principal."""
     total_players = db.query(Player).count()
     total_scored  = (
         db.query(ScoutingScore)
         .filter(ScoutingScore.season == CURRENT_SEASON)
         .count()
     )
+
+    leagues = db.query(League).filter(League.is_active == True).all()
+    league_names = " · ".join([l.name for l in leagues])
+    total_leagues = len(leagues)
 
     # Top 1 por posición
     top_by_position = {}
@@ -175,5 +178,7 @@ def get_summary(db: Session = Depends(get_db)):
         "season":         CURRENT_SEASON,
         "total_players":  total_players,
         "total_scored":   total_scored,
+        "total_leagues": total_leagues,
+        "leagues": league_names,
         "top_by_position": top_by_position,
     }
